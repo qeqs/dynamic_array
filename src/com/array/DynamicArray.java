@@ -70,7 +70,7 @@ public class DynamicArray {
         }
         last--;
 
-        if(Math.round(length/last) == 2){
+        if(Math.round(length/last) >= 2){
             trim();
         }
     }
