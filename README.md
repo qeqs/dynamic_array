@@ -5,6 +5,7 @@ UML Class diagram:
 interface DynemicArrayComparator{
     int compare(int a,int b);
 }
+
 DynemicArrayComparator <|-- AscDynemicArrayComparator
 DynemicArrayComparator <|-- DescDynemicArrayComparator
 
