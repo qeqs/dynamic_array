@@ -30,16 +30,20 @@ public class DynamicArrayTest {
 
         for (int i = 0; i < data.length; i++)
             array.add(data[i]);
+        Assert.assertArrayEquals("Add method test",data,array.toArray());
     }
 
     @Test
     public void test3Insert() {
         array.insert(0, data[0]);
+        Assert.assertEquals("Insert method test",data[0],array.get(0));
     }
 
     @Test
     public void test4Delete() {
+        int expected = array.get(0);
         array.delete(0);
+        Assert.assertNotEquals("Insert method test",expected,array.get(0));
     }
 
     @Test
