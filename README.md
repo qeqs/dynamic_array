@@ -1,10 +1,10 @@
 # dynamic_array
-UML Class diagram
+UML Class diagram:
+
 @startuml
 interface DynemicArrayComparator{
     int compare(int a,int b);
 }
-
 DynemicArrayComparator <|-- AscDynemicArrayComparator
 DynemicArrayComparator <|-- DescDynemicArrayComparator
 
