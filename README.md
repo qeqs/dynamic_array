@@ -2,14 +2,18 @@
 UML Class diagram:
 
 @startuml
+
 interface DynemicArrayComparator{
+
     int compare(int a,int b);
 }
 
 DynemicArrayComparator <|-- AscDynemicArrayComparator
+
 DynemicArrayComparator <|-- DescDynemicArrayComparator
 
 class DynamicArray {
+
     private int[] data;
     private int length, last;
     private final int minLength = 10;
@@ -28,4 +32,5 @@ class DynamicArray {
     public int[] toArray();    
     public void clear();
 }
+
 @enduml
