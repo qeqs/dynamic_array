@@ -10,8 +10,7 @@ public class TestsSuite {
         TestSuite suite = new TestSuite();
 
         suite.addTest(new JUnit4TestAdapter(DynamicArrayTest.class));
-        suite.addTest(new JUnit4TestAdapter(AscComparatorTest.class));
-        suite.addTest(new JUnit4TestAdapter(DescComparatorTest.class));
+        suite.addTest(new JUnit4TestAdapter(ComparatorTest.class));
 
         return suite;
     }
