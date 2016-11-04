@@ -30,7 +30,7 @@ public class DynamicArray {
         data[index] = value;
     }
     private void resize() {
-        int[] temp = Arrays.copyOfRange(data, 0, last);
+        int[] temp = Arrays.copyOfRange(data, 0, getLength());
         length = (length * 3) / 2 + 1;
         data = new int[length];
         for (int i = 0; i < temp.length; i++)
@@ -38,7 +38,7 @@ public class DynamicArray {
     }
     private void trim() {
         if (last > -1)
-            data = Arrays.copyOfRange(data, 0, last);
+            data = Arrays.copyOfRange(data, 0, getLength());
     }
     public void add(int value){
         if(last==length-1){

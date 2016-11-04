@@ -40,14 +40,14 @@ public class DynamicArrayTest {
     }
 
     @Test
-    public void test4Delete() {
+    public void test2Delete() {
         int expected = array.get(0);
         array.delete(0);
         Assert.assertNotEquals("Insert method test",expected,array.get(0));
     }
 
     @Test
-    public void test2Sort() {
+    public void test4Sort() {
         data = array.toArray();
         Arrays.sort(data);
         array.sort(0,array.getLength()-1,new AscDynamicArrayComparator());//231ms
