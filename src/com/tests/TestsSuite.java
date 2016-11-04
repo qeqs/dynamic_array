@@ -5,8 +5,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 public class TestsSuite {
-    public static Test suite()
-    {
+    public static Test suite() {
         TestSuite suite = new TestSuite();
 
         suite.addTest(new JUnit4TestAdapter(DynamicArrayTest.class));

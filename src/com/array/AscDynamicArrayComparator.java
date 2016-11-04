@@ -1,8 +1,8 @@
 package com.array;
 
-public class AscDynamicArrayComparator implements DynamicArrayComparator {
+public class AscDynamicArrayComparator implements DynamicArrayComparator<Integer> {
     @Override
-    public int compare(int a, int b) {
-            return a - b;
+    public int compare(java.lang.Integer a, java.lang.Integer b) {
+        return a - b;
     }
 }

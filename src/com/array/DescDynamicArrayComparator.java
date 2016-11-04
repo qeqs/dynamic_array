@@ -1,14 +1,14 @@
 package com.array;
 
-public class DescDynamicArrayComparator implements DynamicArrayComparator{
+public class DescDynamicArrayComparator implements DynamicArrayComparator<Integer> {
     @Override
-    public int compare(int a, int b) {
+    public int compare(Integer a, Integer b) {
         int result = 0;
-        if(a>b){
-            result=-1;
+        if (a > b) {
+            result = -1;
         }
-        if(a<b){
-            result=1;
+        if (a < b) {
+            result = 1;
         }
         return result;
     }

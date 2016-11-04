@@ -1,38 +1,40 @@
 package com.array;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class DynamicArray {
+public class DynamicArray<T> implements Iterable<T>{
 
-    private int[] data;
+    private T[] data;
     private int length, last;
     private final int minLength = 10;
 
     public DynamicArray() {
         last = -1;
         length = minLength;
-        data = new int[length];
+        data = (T[])new Object[length];
     }
 
     public int getLength() {
         return last+1;
     }
-    public int get(int index){
+    public T get(int index){
         if(index<0||index>=getLength())
             throw new IndexOutOfBoundsException("wrong index");
 
         return data[index];
     }
-    public void set(int index, int value){
+    public void set(int index, T value){
         if(index<0||index>=getLength())
             throw new IndexOutOfBoundsException("wrong index");
 
         data[index] = value;
     }
     private void resize() {
-        int[] temp = Arrays.copyOfRange(data, 0, getLength());
+        T[] temp = Arrays.copyOfRange(data, 0, getLength());
         length = (length * 3) / 2 + 1;
-        data = new int[length];
+        data = (T[])new Object[length];
         for (int i = 0; i < temp.length; i++)
             data[i] = temp[i];
     }
@@ -40,14 +42,14 @@ public class DynamicArray {
         if (last > -1)
             data = Arrays.copyOfRange(data, 0, getLength());
     }
-    public void add(int value){
+    public void add(T value){
         if(last==length-1){
             resize();
         }
         last++;
         data[last] = value;
     }
-    public void insert(int index, int value){
+    public void insert(int index, T value){
         if(index<0||index>=getLength())
             throw new IndexOutOfBoundsException("wrong index");
 
@@ -90,7 +92,7 @@ public class DynamicArray {
         {
             if (comparator.compare(data[i],data[end])<=0)
             {
-                int temp = data[marker]; // swap
+                T temp = data[marker]; // swap
                 data[marker] = data[i];
                 data[i] = temp;
                 marker ++;
@@ -99,10 +101,43 @@ public class DynamicArray {
         return marker - 1;
     }
 
-    public int[] toArray(){
-        return Arrays.copyOfRange(data,0,getLength());
+    public T[] toArray(){
+        return (T[])Arrays.copyOfRange(data,0,getLength());
     }
     public void clear(){
-        data = new int[minLength];
+        data = (T[])new Object[minLength];
     }
+
+
+
+    //region Iterator realization
+    @Override
+    public Iterator<T> iterator() {
+        return new DynamicArrayIterator(this);
+    }
+
+    private class DynamicArrayIterator implements Iterator<T>{
+
+        private DynamicArray<T> data;
+        private int index;
+
+        public DynamicArrayIterator(DynamicArray<T> data){
+            index = 0;
+            this.data = data;
+        }
+        @Override
+        public boolean hasNext() {
+            return data.getLength()!=index;
+        }
+
+        @Override
+        public T next() {
+            if(hasNext()) {
+                return data.get(index++);
+            } else {
+                throw new NoSuchElementException("There are no elements size = " + data.getLength());
+            }
+        }
+    }
+    //endregion
 }

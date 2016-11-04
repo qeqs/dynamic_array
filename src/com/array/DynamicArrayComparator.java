@@ -1,5 +1,7 @@
 package com.array;
 
-public interface DynamicArrayComparator {
-    int compare(int a,int b);
+import java.util.Comparator;
+
+public interface DynamicArrayComparator<T> extends Comparator<T> {
+    int compare(T a,T b);
 }

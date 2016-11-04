@@ -3,6 +3,7 @@ package com.tests;
 import com.array.AscDynamicArrayComparator;
 import com.array.DescDynamicArrayComparator;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,14 +27,41 @@ public class ComparatorTest
                 {Integer.MAX_VALUE,Integer.MIN_VALUE}};//с этими значениями происходит переполнение в таком компараторе
         return Arrays.asList(data);
     }
-    @Test
-    public void test1AscComparator(){
-        AscDynamicArrayComparator comparator = new AscDynamicArrayComparator();
-        Assert.assertEquals("AscComparatorTest Result",Integer.compare(a,b)>0,comparator.compare(a,b)>0);
+
+    public static int  index = 1;
+    static String successStr = "Ok.\n";
+    static String resultStr = "Result is ";
+
+    @BeforeClass
+    public static void beforeStart(){
+        System.out.println("Starting ComparatorTest...\n");
     }
     @Test
-    public void test2DescComparator(){
+    public void test1AscComparator() {
+        System.out.println("AscComparator test" + index + ".\n" + "Parameters:\n" + "a = " + a + "\nb = " + b);
+        AscDynamicArrayComparator comparator = new AscDynamicArrayComparator();
+        System.out.print(resultStr);
+        try {
+            Assert.assertEquals(Integer.compare(a, b) > 0, comparator.compare(a, b) > 0);
+        }
+        catch (AssertionError e) {
+            System.out.println("AssertionError: " + e.getLocalizedMessage() + ".");
+            throw e;
+        }
+        System.out.println(successStr);
+    }
+    @Test
+    public void test2DescComparator() {
+        System.out.println("DescComparator test" + index++ + ".\n" + "Parameters:\n" + "a = " + a + "\nb = " + b);
         DescDynamicArrayComparator comparator = new DescDynamicArrayComparator();
-        Assert.assertEquals("DescComparatorTest Result",Integer.compare(b,a)>0,comparator.compare(a,b)>0);
+        System.out.print(resultStr);
+        try {
+            Assert.assertEquals("DescComparatorTest Result", Integer.compare(b, a) > 0, comparator.compare(a, b) > 0);
+        }
+        catch (AssertionError e) {
+            System.out.println("AssertionError: " + e.getLocalizedMessage() + ".");
+            throw e;
+        }
+        System.out.println(successStr);
     }
 }
